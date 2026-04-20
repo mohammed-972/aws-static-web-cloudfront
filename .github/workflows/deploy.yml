@@ -21,7 +21,4 @@ jobs:
           aws-region: eu-west-2
 
       - name: Sync files to S3
-        run: aws s3 sync . s3://static-web-mo.com --delete \
-          --exclude ".git/*" \
-          --exclude ".github/*" \
-          --exclude "README.md"
+        run: aws s3 sync . s3://static-web-mo.com --delete --exclude ".git/*" --exclude ".github/*" --exclude "README.md"
