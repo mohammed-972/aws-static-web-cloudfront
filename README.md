@@ -6,6 +6,7 @@ This project demonstrates how to deploy a static website using AWS services:
 - Amazon S3 (static hosting)
 - Amazon CloudFront (CDN + HTTPS)
 - Amazon Route 53 (DNS)
+- GitHub Actions
 
 ## Architecture
 ![Architecture](architecture.png)
@@ -16,6 +17,17 @@ This project demonstrates how to deploy a static website using AWS services:
 3. CloudFront checks cache:
    - If cache hit then return content
    - If cache miss then fetch from S3 origin, cache and return
+
+## CI/CD Pipeline
+
+The deployment pipeline is triggered whenever changes are pushed to the `main` branch.
+
+Pipeline flow:
+
+1. GitHub Actions checks out the repository
+2. AWS credentials are configured securely using GitHub Secrets
+3. `index.html` synced to the S3 bucket
+4. CloudFront cache is invalidated so users receive the latest version
 
 ## Challenges I Faced
 
@@ -53,3 +65,4 @@ Built using AWS Free Tier. Total cost was under a dollar.
 - DNS routing with Route 53
 - Difference between S3 endpoints
 - Real world debugging of cloud systems
+- Automating deployments using GitHub actions
