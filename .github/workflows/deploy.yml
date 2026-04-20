@@ -22,3 +22,5 @@ jobs:
 
       - name: Sync files to S3
         run: aws s3 sync . s3://static-web-mo.com --delete --exclude "*" --include "index.html"
+      - name: invalidate cloudfront cache
+        run: aws cloudfront create-invalidation --distribution-id EHM2R6HFL0Z79 --paths "/*"
